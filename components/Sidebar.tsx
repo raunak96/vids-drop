@@ -1,7 +1,6 @@
-import { NextComponentType } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { FC, useState } from "react";
 import GoogleLogin from "react-google-login";
 import { AiFillHome, AiOutlineMenu } from "react-icons/ai";
 import { ImCancelCircle } from "react-icons/im";
@@ -9,12 +8,12 @@ import Discover from "./Discover";
 import Footer from "./Footer";
 import SuggestedAccounts from "./SuggestedAccounts";
 
-const Sidebar: NextComponentType = () => {
+const Sidebar: FC = () => {
 	const [showSidebar, setShowSidebar] = useState<Boolean>(true);
 	const { pathname } = useRouter();
 	const userProfile = false;
 	return (
-		<aside className="overflow-x-hidden overflow-y-auto">
+		<aside>
 			<button
 				type="button"
 				className={`block xl:hidden m-2 mt-3 cursor-pointer ${
@@ -24,7 +23,7 @@ const Sidebar: NextComponentType = () => {
 				{showSidebar ? <ImCancelCircle /> : <AiOutlineMenu />}
 			</button>
 			{showSidebar && (
-				<ul className="xl:w-[400px] w-[20px] flex flex-col justify-start mb-10 border-r-2 border-gray-100 xl:border-0 p-3">
+				<ul className="xl:w-[400px] w-20 flex flex-col justify-start mb-10 border-r-2 border-gray-100 xl:border-0 p-3">
 					<li className="xl:border-b-2 border-gray-200 xl:pb-4">
 						<Link href="/">
 							<a
@@ -46,7 +45,7 @@ const Sidebar: NextComponentType = () => {
 								Log in to like and comment on videos.
 							</p>
 							<GoogleLogin
-								clientId={`${process.env.NEXT_PUBLIC_GOOGLE_CID}`}
+								clientId=""
 								render={renderProps => (
 									<button
 										className="mr-3 bg-white text-lg text-[#F51997] border-[1px] border-[#F51997] font-semibold px-6 py-3 rounded-md outline-none w-full mt-3 hover:text-white hover:bg-[#F51997]"

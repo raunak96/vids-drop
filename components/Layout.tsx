@@ -29,7 +29,7 @@ const Meta = ({
 				<Navbar />
 			</header>
 			<main className="flex gap-6 md:gap-20">
-				<div className="h-[92vh] overflow-hidden xl:hover:overflow-auto">
+				<div className="h-[92vh] overflow-hidden hover:overflow-y-auto">
 					<Sidebar />
 				</div>
 				<div className="mt-4 flex flex-1 flex-col gap-10 overflow-auto h-[88vh] videos">
