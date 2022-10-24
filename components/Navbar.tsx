@@ -2,12 +2,13 @@ import { AiOutlineLogout } from "react-icons/ai";
 import { BiSearch } from "react-icons/bi";
 import { BsDroplet } from "react-icons/bs";
 import { IoMdAdd } from "react-icons/io";
-import { GoogleLogin, googleLogout } from "@react-oauth/google";
 import Link from "next/link";
 import logo from "../public/logo.jpg";
 import Image from "next/future/image";
+import Login from "./Login";
 
 const Navbar = () => {
+	const user = false;
 	return (
 		<nav>
 			<ul className="w-full flex justify-between items-center border-b-2 border-gray-200 py-3 px-4 ">
@@ -28,7 +29,8 @@ const Navbar = () => {
 						</a>
 					</Link>
 				</li>
-				<li></li>
+				<li>Search</li>
+				<li>{user ? <div>Logged In</div> : <Login />}</li>
 			</ul>
 		</nav>
 	);

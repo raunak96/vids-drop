@@ -23,7 +23,7 @@ const Meta = ({
 					content="A Video Sharing Social Media Application"
 				/>
 				<meta name="keywords" content={keywords.join(", ")} />
-				<link rel="icon" href="/favicon.ico" />
+				<link rel="icon" href="/favicon.png" />
 			</Head>
 			<header>
 				<Navbar />
