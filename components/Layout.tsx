@@ -10,7 +10,7 @@ interface iProps {
 }
 
 const Meta = ({
-	title = "VidsDrop App",
+	title = "VidsDrop",
 	children,
 	keywords = ["video-sharing", "sanity.io", "nextjs", "tailwind", "comments"],
 }: iProps) => {

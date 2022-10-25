@@ -5,3 +5,5 @@
 - On Clicking Google Login button provided from this package, if successful, it returns a response containing the jwt token.
 - We decode this token using `jwt-decode` which gives the logged in user details [Refer](components/Login.tsx#L9).
 - Then, we send the details to the `/api/auth` route we created [Auth route](/pages/api/auth.ts) where we send the details to sanity which adds this data to the db if it is not already present.
+
+### `Zustand` for Global State Management for storing user [Refer](store/authStore.ts).

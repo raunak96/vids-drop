@@ -6,9 +6,11 @@ import Link from "next/link";
 import logo from "../public/logo.jpg";
 import Image from "next/future/image";
 import Login from "./Login";
+import useAuthStore from "../store/authStore";
+import { googleLogout } from "@react-oauth/google";
 
 const Navbar = () => {
-	const user = false;
+	const { userProfile: user, removeUser } = useAuthStore();
 	return (
 		<nav>
 			<ul className="w-full flex justify-between items-center border-b-2 border-gray-200 py-3 px-4 ">
@@ -30,7 +32,44 @@ const Navbar = () => {
 					</Link>
 				</li>
 				<li>Search</li>
-				<li>{user ? <div>Logged In</div> : <Login />}</li>
+				<li>
+					{user ? (
+						<div className="flex gap-5 md:gap-10">
+							<Link href="/upload">
+								<button className="border-2 px-2 md:px-4 text-md font-semibold flex items-center gap-2">
+									<IoMdAdd className="text-xl" />{" "}
+									<span className="hidden md:block">
+										Upload{" "}
+									</span>
+								</button>
+							</Link>
+							{user.avatar && (
+								<Link href={`/profile/${user._id}`}>
+									<a>
+										<Image
+											className="rounded-full"
+											src={user.avatar}
+											alt="user"
+											width={40}
+											height={40}
+										/>
+									</a>
+								</Link>
+							)}
+							<button
+								type="button"
+								className=" border-2 p-2 rounded-full cursor-pointer outline-none shadow-md"
+								onClick={() => {
+									googleLogout();
+									removeUser();
+								}}>
+								<AiOutlineLogout color="red" fontSize={21} />
+							</button>
+						</div>
+					) : (
+						<Login />
+					)}
+				</li>
 			</ul>
 		</nav>
 	);

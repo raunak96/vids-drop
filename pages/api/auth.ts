@@ -6,7 +6,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 		const user = req.body;
 		try {
 			const data = await client.createIfNotExists(user);
-			console.log(data);
 			return res.status(201).json(data);
 		} catch (error) {
 			return res.status(500).json({ error: error });

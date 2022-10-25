@@ -1,12 +1,11 @@
-import {
-	CredentialResponse,
-	GoogleLogin,
-	googleLogout,
-} from "@react-oauth/google";
+import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+import useAuthStore from "../store/authStore";
 
 const Login = () => {
+	const { addUser } = useAuthStore();
+
 	const loginUser = async (res: CredentialResponse) => {
 		const decoded: {
 			name: string;
@@ -26,7 +25,7 @@ const Login = () => {
 			"http://localhost:3000/api/auth",
 			userDoc
 		);
-		console.log(data);
+		addUser(data);
 	};
 	return (
 		<GoogleLogin
