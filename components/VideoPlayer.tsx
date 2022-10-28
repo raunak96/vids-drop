@@ -41,36 +41,45 @@ const VideoPlayer: FC<IProps> = ({ video, id }) => {
 							ref={videoRef}
 							src={video.asset.url}
 							muted={isVideoMuted}
-							className="lg:w-[600px] h-[300px] md:h-[400px] lg:h-[528px] w-[200px] rounded-2xl bg-black object-cover"></video>
+							className="lg:w-[600px] h-[300px] md:h-[400px] lg:h-[528px] w-[200px] rounded-2xl bg-black object-cover"
+						/>
 					</a>
 				</Link>
-				<div className="hidden group-hover:flex absolute bottom-6 cursor-pointer left-0 right-0 justify-between p-3">
+				<div className="hidden group-hover:flex absolute bottom-6 cursor-pointer left-0 right-0 justify-between p-3 z-20">
 					{playing ? (
-						<button onClick={onVideoPress}>
+						<button
+							onClick={onVideoPress}
+							className="bg-black rounded-full p-2">
 							<BsFillPauseFill
-								className="text-black text-2xl lg:text-4xl"
+								className="text-2xl lg:text-4xl"
 								color="#fff"
 							/>
 						</button>
 					) : (
-						<button onClick={onVideoPress}>
+						<button
+							onClick={onVideoPress}
+							className="bg-black rounded-full p-2">
 							<BsFillPlayFill
-								className="text-black text-2xl lg:text-4xl"
+								className="text-2xl lg:text-4xl"
 								color="#fff"
 							/>
 						</button>
 					)}
 					{isVideoMuted ? (
-						<button onClick={onVolPress}>
+						<button
+							onClick={onVolPress}
+							className="bg-black rounded-full p-2">
 							<HiVolumeOff
-								className="text-black text-2xl lg:text-4xl"
+								className="text-2xl lg:text-4xl"
 								color="#fff"
 							/>
 						</button>
 					) : (
-						<button onClick={onVolPress}>
+						<button
+							onClick={onVolPress}
+							className="bg-black rounded-full p-2">
 							<HiVolumeUp
-								className="text-black text-2xl lg:text-4xl"
+								className="text-2xl lg:text-4xl"
 								color="#fff"
 							/>
 						</button>

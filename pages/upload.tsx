@@ -2,7 +2,6 @@ import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
-import axios from "axios";
 import { ChangeEvent, useState } from "react";
 import { topics } from "../utils/constants";
 import { useForm } from "react-hook-form";
@@ -97,7 +96,7 @@ const Upload: NextPage = () => {
 
 	return (
 		<div className="flex absolute w-full left-0 top-[67px] mb-10 pt-10 lg:pt-20 bg-[#F8F8F8] justify-center">
-			<div className="bg-white rounded-lg 2xl:w-3/5 w-4/5 flex gap-6 flex-col items-center p-14 pt-6">
+			<div className="bg-white rounded-lg 2xl:w-3/5 sm:w-4/5 w-full flex gap-6 flex-col items-center p-14 pt-6">
 				<div className="text-center">
 					<p className="text-2xl font-bold">Upload Video</p>
 					<p className="text-md text-gray-400 mt-1">
@@ -111,9 +110,9 @@ const Upload: NextPage = () => {
 						)}
 				</div>
 				<form
-					className="flex flex-1 w-full space-x-12 space-y-6 flex-wrap justify-center items-center"
+					className="flex flex-1 w-full space-x-12 space-y-6 flex-wrap justify-between items-center"
 					onSubmit={handleSubmit(onSubmit)}>
-					<div className=" border-dashed rounded-xl border-4 border-gray-200 flex flex-col justify-center items-center outline-none mt-10 w-[280px] p-10 cursor-pointer hover:border-red-300 hover:bg-gray-100">
+					<div className=" border-dashed rounded-xl border-4 border-gray-200 flex flex-col justify-center items-center outline-none mt-10 w-[280px] p-10 cursor-pointer hover:border-red-300 hover:bg-gray-100 mx-auto">
 						<div>
 							{!videoAsset ? (
 								<label className="cursor-pointer">
@@ -181,7 +180,9 @@ const Upload: NextPage = () => {
 							</p>
 						)}
 					</div>
-					<div className="flex flex-1 flex-col gap-3 pb-10">
+					<div
+						className="flex flex-col gap-3 py-10 px-4"
+						style={{ margin: "0 auto" }}>
 						<label className="text-md font-medium ">Caption</label>
 						<input
 							{...register("caption", {
