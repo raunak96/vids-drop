@@ -31,7 +31,7 @@ const VideoCard: FC<IProps> = ({
 					</div>
 					<div>
 						<Link href={`/profile/${postedBy?._id}`}>
-							<div className="flex items-center gap-2">
+							<a className="flex items-center gap-2">
 								<p className="flex gap-2 items-center md:text-md font-bold text-primary">
 									{postedBy.userName}{" "}
 									<GoVerified className="text-blue-400 text-md" />
@@ -39,15 +39,17 @@ const VideoCard: FC<IProps> = ({
 								<p className="capitalize font-medium text-xs text-gray-500 hidden md:block">
 									{postedBy.userName}
 								</p>
-							</div>
+							</a>
 						</Link>
-						<Link href={`/detail/${_id}`}>
-							<p className="mt-2 font-normal ">{caption}</p>
+						<Link href={`/post/${_id}`}>
+							<a>
+								<p className="mt-2 font-normal ">{caption}</p>
+							</a>
 						</Link>
 					</div>
 				</div>
 			</div>
-			<VideoPlayer video={video} />
+			<VideoPlayer video={video} id={_id} />
 		</div>
 	);
 };

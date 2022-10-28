@@ -15,7 +15,7 @@ const Meta = ({
 	keywords = ["video-sharing", "sanity.io", "nextjs", "tailwind", "comments"],
 }: iProps) => {
 	return (
-		<div className="xl:w-[1200px] m-auto overflow-hidden h-[100vh]">
+		<div className="overflow-hidden h-[100vh]">
 			<Head>
 				<title>{title}</title>
 				<meta
@@ -28,7 +28,7 @@ const Meta = ({
 			<header>
 				<Navbar />
 			</header>
-			<main className="flex gap-6 md:gap-20">
+			<main className="flex gap-6 md:gap-20 xl:w-[1200px] m-auto">
 				<div className="h-[92vh] overflow-hidden hover:overflow-y-auto">
 					<Sidebar />
 				</div>

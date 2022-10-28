@@ -9,7 +9,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 		const data = await client.fetch(query);
 		return res.status(200).json(data);
 	}
-	if (reqType == "POST") return res.status(200).send({ success: req.body });
+	if (reqType == "POST") {
+		await client.create(req.body);
+		return res.status(201).send({ message: "Created Post successfully." });
+	}
 };
 
 export default handler;
