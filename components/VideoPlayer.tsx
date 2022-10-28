@@ -33,7 +33,7 @@ const VideoPlayer: FC<IProps> = ({ video, id }) => {
 
 	return (
 		<div className="lg:ml-20 flex gap-4">
-			<div className="rounded-3xl group relative">
+			<div className="rounded-3xl group relative mr-4 sm:mr-0">
 				<Link href={`/post/${id}`}>
 					<a>
 						<video
@@ -41,11 +41,11 @@ const VideoPlayer: FC<IProps> = ({ video, id }) => {
 							ref={videoRef}
 							src={video.asset.url}
 							muted={isVideoMuted}
-							className="lg:w-[600px] h-[300px] md:h-[400px] lg:h-[528px] w-[200px] rounded-2xl bg-black object-cover"
+							className="h-[300px] md:h-[400px] lg:h-[528px] w-full sm:w-[400px] md:w-[500px] lg:w-[600px] rounded-2xl bg-black object-contain"
 						/>
 					</a>
 				</Link>
-				<div className="hidden group-hover:flex absolute bottom-6 cursor-pointer left-0 right-0 justify-between p-3 z-20">
+				<div className="hidden group-hover:flex absolute bottom-6 cursor-pointer left-0 right-0 justify-between p-3">
 					{playing ? (
 						<button
 							onClick={onVideoPress}

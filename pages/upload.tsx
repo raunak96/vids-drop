@@ -58,7 +58,7 @@ const Upload: NextPage = () => {
 			},
 			userId: userProfile?._id,
 			postedBy: {
-				_type: "postedBy",
+				_type: "reference",
 				_ref: userProfile?._id,
 			},
 			topic,

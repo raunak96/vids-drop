@@ -30,7 +30,9 @@ const Login = () => {
 	return (
 		<GoogleLogin
 			onSuccess={loginUser}
+			auto_select={true}
 			onError={() => console.log("Login Failed")}
+			useOneTap
 		/>
 	);
 };
