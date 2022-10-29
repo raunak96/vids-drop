@@ -2,7 +2,7 @@ import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { topics } from "../utils/constants";
 import { useForm } from "react-hook-form";
 import client from "../sanity.config";
@@ -20,6 +20,10 @@ const Upload: NextPage = () => {
 	>();
 	const { userProfile } = useAuthStore();
 	const router = useRouter();
+
+	useEffect(() => {
+		if (!userProfile?.email) router.replace("/");
+	}, [router, userProfile?.email]);
 	const {
 		register,
 		handleSubmit,

@@ -1,7 +1,6 @@
-import { FC, MouseEvent, useRef, useState } from "react";
+import { FC, useRef, useState } from "react";
 import { HiVolumeUp, HiVolumeOff } from "react-icons/hi";
-import { BsFillPlayFill, BsFillPauseFill, BsFullscreen } from "react-icons/bs";
-import { BsPlay } from "react-icons/bs";
+import { BsFillPlayFill, BsFillPauseFill } from "react-icons/bs";
 
 interface IProps {
 	video: {
@@ -38,7 +37,7 @@ const FullVideoPlayer: FC<IProps> = ({ video }) => {
 				{playing ? (
 					<button
 						onClick={onVideoPress}
-						className="bg-black rounded-full p-2">
+						className="bg-black rounded-full p-2 flex justify-center items-center">
 						<BsFillPauseFill
 							className="text-6xl lg:text-8xl"
 							color="#fff"
@@ -47,7 +46,7 @@ const FullVideoPlayer: FC<IProps> = ({ video }) => {
 				) : (
 					<button
 						onClick={onVideoPress}
-						className="bg-black rounded-full p-2">
+						className="bg-black rounded-full p-2 flex justify-center items-center">
 						<BsFillPlayFill
 							className="text-6xl lg:text-8xl"
 							color="#fff"
@@ -59,7 +58,7 @@ const FullVideoPlayer: FC<IProps> = ({ video }) => {
 				{isVideoMuted ? (
 					<button
 						onClick={onVolPress}
-						className="bg-black rounded-full p-2">
+						className="bg-black rounded-full p-2 flex justify-center items-center">
 						<HiVolumeOff
 							className="text-2xl lg:text-4xl"
 							color="#fff"
@@ -68,7 +67,7 @@ const FullVideoPlayer: FC<IProps> = ({ video }) => {
 				) : (
 					<button
 						onClick={onVolPress}
-						className="bg-black rounded-full p-2">
+						className="bg-black rounded-full p-2 flex justify-center items-center">
 						<HiVolumeUp
 							className="text-2xl lg:text-4xl"
 							color="#fff"

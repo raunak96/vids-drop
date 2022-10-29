@@ -13,18 +13,22 @@ export interface Video {
 		avatar: string;
 	};
 	likes: {
+		_key: string;
+		_type: string;
+		_ref: string;
+	}[];
+	comments: {
+		comment: string;
+		_key?: string;
 		postedBy: {
 			_id: string;
 			userName: string;
 			avatar: string;
 		};
+		_createdAt: string;
 	}[];
-	comments: {
-		comment: string;
+	commentKeys?: {
 		_key: string;
-		postedBy: {
-			_ref: string;
-		};
 	}[];
 	userId: string;
 }

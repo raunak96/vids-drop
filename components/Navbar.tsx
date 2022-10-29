@@ -8,9 +8,11 @@ import Image from "next/future/image";
 import Login from "./Login";
 import useAuthStore from "../store/authStore";
 import { googleLogout } from "@react-oauth/google";
+import { useRouter } from "next/router";
 
 const Navbar = () => {
 	const { userProfile: user, removeUser } = useAuthStore();
+	const router = useRouter();
 	return (
 		<nav>
 			<ul className="sticky bg-white top-0 z-40 w-full flex justify-between items-center border-b-2 border-gray-200 py-3 px-4 ">
@@ -62,6 +64,7 @@ const Navbar = () => {
 								onClick={() => {
 									googleLogout();
 									removeUser();
+									router.replace("/");
 								}}>
 								<AiOutlineLogout color="red" fontSize={21} />
 							</button>

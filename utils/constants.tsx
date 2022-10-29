@@ -2,6 +2,7 @@ import { BsCode, BsEmojiSunglasses } from "react-icons/bs";
 import { GiCakeSlice, GiGalaxy, GiLipstick } from "react-icons/gi";
 import { FaPaw, FaMedal, FaGamepad } from "react-icons/fa";
 
+export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 export const topics = [
 	{
 		name: "coding",

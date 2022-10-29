@@ -2,6 +2,7 @@ import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import useAuthStore from "../store/authStore";
+import { BASE_URL } from "../utils/constants";
 
 const Login = () => {
 	const { addUser } = useAuthStore();
@@ -21,10 +22,7 @@ const Login = () => {
 			userName: name,
 			email,
 		};
-		const { data } = await axios.post(
-			"http://localhost:3000/api/auth",
-			userDoc
-		);
+		const { data } = await axios.post(`${BASE_URL}/api/auth`, userDoc);
 		addUser(data);
 	};
 	return (
