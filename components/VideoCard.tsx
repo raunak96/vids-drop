@@ -4,13 +4,39 @@ import { GoVerified } from "react-icons/go";
 import Link from "next/link";
 import Image from "next/future/image";
 import VideoPlayer from "./VideoPlayer";
+import { BsPlay } from "react-icons/bs";
 
 interface IProps {
 	video: Video;
+	isHomePage?: boolean;
 }
 const VideoCard: FC<IProps> = ({
 	video: { caption, postedBy, video, _id, likes },
+	isHomePage = false,
 }) => {
+	if (!isHomePage) {
+		return (
+			<div>
+				<Link href={`/post/${_id}`}>
+					<video
+						loop
+						src={video.asset.url}
+						className="w-[250px] md:w-full rounded-xl cursor-pointer"></video>
+				</Link>
+				<div className="flex gap-2 -mt-8 items-center ml-4">
+					<p className="text-white text-lg font-medium flex gap-1 items-center">
+						<BsPlay className="text-2xl" />
+						{likes?.length || 0}
+					</p>
+				</div>
+				<Link href={`/post/${_id}`}>
+					<p className="mt-5 text-md text-gray-800 cursor-pointer w-210">
+						{caption}
+					</p>
+				</Link>
+			</div>
+		);
+	}
 	return (
 		<div className="flex flex-col border-b-2 border-gray-200 pb-6">
 			<div>
