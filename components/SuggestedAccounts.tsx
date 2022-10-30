@@ -7,7 +7,7 @@ import { IUser } from "../types";
 import arrayShuffle from "array-shuffle";
 
 const SuggestedAccounts: FC = () => {
-	const { allUsers, fetchAllUsers } = useAuthStore();
+	const { allUsers, fetchAllUsers, userProfile } = useAuthStore();
 	useEffect(() => {
 		fetchAllUsers();
 	}, [fetchAllUsers]);
@@ -21,32 +21,40 @@ const SuggestedAccounts: FC = () => {
 				{allUsers &&
 					arrayShuffle(allUsers)
 						?.slice(0, 6)
-						?.map((user: IUser) => (
-							<Link href={`/profile/${user._id}`} key={user._id}>
-								<div className="flex gap-3 hover:bg-primary p-2 cursor-pointer font-semibold rounded">
-									<div className="w-8 h-8">
-										<Image
-											width={34}
-											height={34}
-											className="rounded-full"
-											src={user.avatar}
-											alt="user-profile"
-											sizes="100vw"
-										/>
-									</div>
+						?.map(
+							(user: IUser) =>
+								userProfile?._id !== user._id && (
+									<Link
+										href={`/profile/${user._id}`}
+										key={user._id}>
+										<div className="flex gap-3 hover:bg-primary p-2 cursor-pointer font-semibold rounded">
+											<div className="w-8 h-8">
+												<Image
+													width={34}
+													height={34}
+													className="rounded-full"
+													src={user.avatar}
+													alt="user-profile"
+													sizes="100vw"
+												/>
+											</div>
 
-									<div className="hidden xl:block">
-										<p className="flex gap-1 items-center text-md font-bold text-primary lowercase">
-											{user.userName.replace(/\s+/g, "")}{" "}
-											<GoVerified className="text-blue-400" />
-										</p>
-										<p className="capitalize text-gray-400 text-xs">
-											{user.userName}
-										</p>
-									</div>
-								</div>
-							</Link>
-						))}
+											<div className="hidden xl:block">
+												<p className="flex gap-1 items-center text-md font-bold text-primary lowercase">
+													{user.userName.replace(
+														/\s+/g,
+														""
+													)}{" "}
+													<GoVerified className="text-blue-400" />
+												</p>
+												<p className="capitalize text-gray-400 text-xs">
+													{user.userName}
+												</p>
+											</div>
+										</div>
+									</Link>
+								)
+						)}
 			</>
 		</li>
 	);
