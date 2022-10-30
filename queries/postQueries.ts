@@ -45,15 +45,17 @@ export const postDetailQuery = (postId: string | string[]): string => {
       avatar
     },
      likes,
-    "commentKeys":comments[]{_key},
-    comments[]->{
-            comment,
-            postedBy->{
-                _id,
-                avatar,
-                userName
-            },
-            _createdAt
+    comments[]{
+            _key,
+          ...@->{
+                comment,
+                postedBy->{
+                    _id,
+                    avatar,
+                    userName
+                },
+                _createdAt
+            }
         }
     
   }`;

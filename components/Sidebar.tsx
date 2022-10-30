@@ -22,7 +22,7 @@ const Sidebar: FC = () => {
 				{showSidebar ? <ImCancelCircle /> : <AiOutlineMenu />}
 			</button>
 			{showSidebar && (
-				<ul className="xl:w-[400px] w-20 flex flex-col justify-start mb-10 border-r-2 border-gray-100 xl:border-0 p-3">
+				<ul className="xl:w-[400px] w-20 flex flex-col justify-start mb-10 border-r-2 border-gray-100 xl:border-0 p-3 ">
 					<li className="xl:border-b-2 border-gray-200 xl:pb-4">
 						<Link href="/">
 							<a
@@ -38,27 +38,6 @@ const Sidebar: FC = () => {
 							</a>
 						</Link>
 					</li>
-					{/* {!userProfile && (
-						<li className="px-2 py-4 hidden xl:block">
-							<p className="text-gray-400">
-								Log in to like and comment on videos.
-							</p>
-							<GoogleLogin
-								clientId=""
-								render={renderProps => (
-									<button
-										className="mr-3 bg-white text-lg text-[#F51997] border-[1px] border-[#F51997] font-semibold px-6 py-3 rounded-md outline-none w-full mt-3 hover:text-white hover:bg-[#F51997]"
-										onClick={renderProps.onClick}
-										disabled={renderProps.disabled}>
-										Log in
-									</button>
-								)}
-								onSuccess={() => {}}
-								onFailure={() => {}}
-								cookiePolicy="single_host_origin"
-							/>
-						</li>
-					)} */}
 					<Discover />
 					<SuggestedAccounts />
 					<Footer />

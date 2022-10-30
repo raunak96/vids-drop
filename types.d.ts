@@ -17,7 +17,7 @@ export interface Video {
 		_type: string;
 		_ref: string;
 	}[];
-	comments: {
+	comments?: {
 		comment: string;
 		_key?: string;
 		postedBy: {
@@ -27,15 +27,12 @@ export interface Video {
 		};
 		_createdAt: string;
 	}[];
-	commentKeys?: {
-		_key: string;
-	}[];
 	userId: string;
 }
 
 export interface IUser {
 	_id: string;
-	_type: string;
+	_type?: string;
 	userName: string;
 	avatar: string;
 }

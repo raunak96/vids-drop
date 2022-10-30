@@ -91,7 +91,6 @@ const Detail: NextPage<IProps> = ({ postDetails }) => {
 							)}
 							<Comments
 								comments={post?.comments ?? []}
-								commentKeys={post?.commentKeys ?? []}
 								postId={post._id}
 								setPost={setPost}
 							/>
@@ -112,7 +111,7 @@ export const getStaticProps: GetStaticProps = async context => {
 				redirect: { destination: "/", permanent: true },
 			};
 		return {
-			props: { postDetails: post, error: null },
+			props: { postDetails: post },
 			revalidate: 10,
 		};
 	} catch (error) {

@@ -16,9 +16,6 @@ interface IProps {
 	// setComment: Dispatch<SetStateAction<string>>;
 	// addComment: (e: React.FormEvent) => void;
 	comments: IComment[];
-	commentKeys: {
-		_key: string;
-	}[];
 	postId: string;
 	setPost: Dispatch<SetStateAction<Video>>;
 }
@@ -34,7 +31,7 @@ interface IFormInputs {
 	comment: string;
 }
 
-const Comments: FC<IProps> = ({ comments, postId, setPost, commentKeys }) => {
+const Comments: FC<IProps> = ({ comments, postId, setPost }) => {
 	const { userProfile } = useAuthStore();
 	const {
 		register,
@@ -72,10 +69,6 @@ const Comments: FC<IProps> = ({ comments, postId, setPost, commentKeys }) => {
 			setPost(post => ({
 				...post,
 				comments: [addedComment, ...(post.comments ?? [])],
-				commentKeys: [
-					{ _key: data.comments[0]._key },
-					...(post.commentKeys ?? []),
-				],
 			}));
 			reset();
 		} catch (error) {
@@ -89,7 +82,7 @@ const Comments: FC<IProps> = ({ comments, postId, setPost, commentKeys }) => {
 					comments.map((comment: IComment, ind: number) => (
 						<div
 							className="p-2 items-center"
-							key={`${commentKeys?.[ind]?._key}-${ind}`}>
+							key={`${comment?._key}-${ind}`}>
 							<Link href={`/profile/${comment.postedBy?._id}`}>
 								<div className="flex items-start gap-3">
 									<div className="w-12 h-12">
