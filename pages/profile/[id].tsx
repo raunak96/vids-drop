@@ -21,8 +21,7 @@ const Profile: NextPage<IProps> = ({ user, userVideos, userLikedVideos }) => {
 	const [showUserVideos, setShowUserVideos] = useState<Boolean>(true);
 	const videosList = useMemo(
 		() => (showUserVideos ? userVideos : userLikedVideos),
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-		[showUserVideos]
+		[showUserVideos, userVideos, userLikedVideos]
 	);
 
 	return (
