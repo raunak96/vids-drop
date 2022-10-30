@@ -1,7 +1,7 @@
 import type { GetServerSideProps, NextPage } from "next";
 import NoResult from "../components/NoResult";
 import VideoCard from "../components/VideoCard";
-import { allPostsQuery } from "../queries/postQueries";
+import { allPostsQuery, topicPostsQuery } from "../queries/postQueries";
 import client from "../sanity.config";
 import { Video } from "../types";
 
@@ -22,9 +22,10 @@ const Home: NextPage<IProps> = ({ videos }) => {
 	);
 };
 
-export const getServerSideProps: GetServerSideProps = async context => {
-	const query = allPostsQuery();
-	const videos = await client.fetch(query);
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+	const { topic } = query;
+	const postsQuery = topic ? topicPostsQuery(topic) : allPostsQuery();
+	const videos = await client.fetch(postsQuery);
 	return {
 		props: {
 			videos,

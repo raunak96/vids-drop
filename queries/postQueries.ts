@@ -15,15 +15,6 @@ export const allPostsQuery = (): string => {
             avatar
         },
         likes,
-        comments[]{
-            _key,
-            comment,
-            postedBy->{
-                _id,
-                userName,
-                avatar
-            },
-        }
     }`;
 	return query;
 };
@@ -58,6 +49,48 @@ export const postDetailQuery = (postId: string | string[]): string => {
             }
         }
     
+  }`;
+	return query;
+};
+
+export const topicPostsQuery = (topic: string | string[]) => {
+	const query = `*[_type == "post" && topic match '${topic}*'] {
+        _id,
+        caption,
+        video{
+            asset->{
+                _id,
+                url
+            }
+        },
+        userId,
+        postedBy->{
+            _id,
+            userName,
+            avatar
+        },
+        likes,
+  }`;
+	return query;
+};
+
+export const searchPostsQuery = (searchTerm: string | string[]) => {
+	const query = `*[_type == "post" && caption match '${searchTerm}*' || topic match '${searchTerm}*'] {
+        _id,
+        caption,
+        video{
+            asset->{
+                _id,
+                url
+            }
+        },
+        userId,
+        postedBy->{
+            _id,
+            userName,
+            avatar
+        },
+        likes,
   }`;
 	return query;
 };
