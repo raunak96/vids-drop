@@ -1,4 +1,4 @@
-import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { GetServerSideProps, NextPage } from "next";
 import { useRouter } from "next/router";
 import client from "../../sanity.config";
 import { postDetailQuery } from "../../queries/postQueries";
@@ -102,7 +102,25 @@ const Detail: NextPage<IProps> = ({ postDetails }) => {
 	);
 };
 
-export const getStaticProps: GetStaticProps = async context => {
+export const getServerSideProps: GetServerSideProps = async context => {
+	const id = context.params?.id ?? "";
+	try {
+		const [post] = await client.fetch(postDetailQuery(id));
+		if (!post)
+			return {
+				redirect: { destination: "/", permanent: true },
+			};
+		return {
+			props: { postDetails: post },
+		};
+	} catch (error) {
+		return {
+			redirect: { destination: "/", permanent: true },
+		};
+	}
+};
+
+/* export const getStaticProps: GetStaticProps = async context => {
 	const id = context.params?.id ?? "";
 	try {
 		const [post] = await client.fetch(postDetailQuery(id));
@@ -133,6 +151,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 		paths,
 		fallback: true,
 	};
-};
+}; */
 
 export default Detail;

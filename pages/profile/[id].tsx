@@ -1,4 +1,4 @@
-import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { GetServerSideProps, NextPage } from "next";
 import { useMemo, useState } from "react";
 import {
 	userCreatedPostsQuery,
@@ -86,7 +86,28 @@ const Profile: NextPage<IProps> = ({ user, userVideos, userLikedVideos }) => {
 	);
 };
 
-export const getStaticProps: GetStaticProps = async context => {
+export const getServerSideProps: GetServerSideProps = async context => {
+	const id = context.params?.id ?? "";
+	try {
+		const [[user], userVideos, userLikedVideos] = await Promise.all([
+			client.fetch(userDetailsQuery(id)),
+			client.fetch(userCreatedPostsQuery(id)),
+			client.fetch(userLikedPostsQuery(id)),
+		]);
+		if (!user)
+			return {
+				redirect: { destination: "/", permanent: true },
+			};
+		return {
+			props: { user, userVideos, userLikedVideos },
+		};
+	} catch (error) {
+		return {
+			redirect: { destination: "/", permanent: true },
+		};
+	}
+};
+/* export const getStaticProps: GetStaticProps = async context => {
 	const id = context.params?.id ?? "";
 	try {
 		const [[user], userVideos, userLikedVideos] = await Promise.all([
@@ -122,5 +143,5 @@ export const getStaticPaths: GetStaticPaths = async () => {
 		fallback: true,
 	};
 };
-
+ */
 export default Profile;
